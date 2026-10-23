@@ -10,9 +10,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
-  <link rel="stylesheet" href="css/style.css">
+  <!-- CSS FILE: style.css is in the repository root -->
+  <link rel="stylesheet" href="style.css">
 
   <style>
     .concept-card {
@@ -39,6 +43,7 @@
 
     .demo-input {
       width: 100%;
+      box-sizing: border-box;
       padding: 12px;
       margin: 10px 0 16px;
       border: 1px solid #343b4b;
@@ -102,6 +107,10 @@
     .demo-heading {
       margin-top: 22px;
     }
+
+    .demo-select {
+      max-width: 100%;
+    }
   </style>
 </head>
 
@@ -121,7 +130,7 @@
       </span>
     </a>
 
-    <nav class="nav-links" aria-label="Main navigation">
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
       <a class="active" href="#visualizer">Visualizer</a>
       <a href="#learn">Learn</a>
       <a href="#practice">Practice</a>
@@ -136,6 +145,7 @@
       id="menuToggle"
       aria-label="Toggle navigation"
       aria-expanded="false"
+      type="button"
     >☰</button>
 
   </header>
@@ -257,9 +267,7 @@ while (notSorted) {
             </div>
           </div>
 
-          <label class="field-label" for="algorithmSelect">
-            ALGORITHM
-          </label>
+          <label class="field-label" for="algorithmSelect">ALGORITHM</label>
 
           <select id="algorithmSelect">
             <option value="bubble">Bubble Sort</option>
@@ -279,7 +287,7 @@ while (notSorted) {
               value="42, 18, 35, 9, 27, 14, 31"
               aria-label="Array values"
             >
-            <button id="applyArray" title="Apply array">↵</button>
+            <button id="applyArray" type="button" title="Apply array">↵</button>
           </div>
 
           <p class="field-hint">
@@ -294,9 +302,7 @@ while (notSorted) {
           <input type="range" id="sizeRange" min="4" max="14" value="7">
 
           <div class="field-row">
-            <label class="field-label" for="speedRange">
-              ANIMATION SPEED
-            </label>
+            <label class="field-label" for="speedRange">ANIMATION SPEED</label>
             <span class="range-value" id="speedValue">2×</span>
           </div>
 
@@ -304,21 +310,21 @@ while (notSorted) {
 
           <div class="control-buttons">
 
-            <button class="button button-primary full" id="startBtn">
+            <button class="button button-primary full" id="startBtn" type="button">
               <span>▶</span> Start sorting
             </button>
 
             <div class="button-pair">
-              <button class="button button-ghost" id="pauseBtn" disabled>
+              <button class="button button-ghost" id="pauseBtn" type="button" disabled>
                 Ⅱ Pause
               </button>
 
-              <button class="button button-ghost" id="resetBtn">
+              <button class="button button-ghost" id="resetBtn" type="button">
                 ↻ Reset
               </button>
             </div>
 
-            <button class="button button-subtle full" id="randomBtn">
+            <button class="button button-subtle full" id="randomBtn" type="button">
               ✧ Generate random array
             </button>
 
@@ -349,12 +355,7 @@ while (notSorted) {
               <i>100</i><i>75</i><i>50</i><i>25</i><i>0</i>
             </div>
 
-            <div
-              class="bars"
-              id="bars"
-              role="img"
-              aria-label="Array bars ready to sort"
-            ></div>
+            <div class="bars" id="bars" role="img" aria-label="Array bars ready to sort"></div>
           </div>
 
           <div class="legend">
@@ -439,66 +440,39 @@ while (notSorted) {
 
       <div class="concept-grid">
 
-        <article
-          class="concept-card"
-          tabindex="0"
-          role="button"
-          data-topic="sorting"
-          aria-label="Open Sorting Algorithms"
-        >
+        <article class="concept-card" tabindex="0" role="button" data-topic="sorting">
           <div class="concept-top">
             <span class="concept-symbol blue-symbol">↕</span>
             <span class="tag">SORTING</span>
           </div>
-
           <h3>Sorting Algorithms</h3>
           <p>Arrange data and compare different approaches to the same problem.</p>
-
           <div class="concept-bottom">
-            <span>Bubble · Selection · Insertion</span>
-            <span>↗</span>
+            <span>Bubble · Selection · Insertion</span><span>↗</span>
           </div>
         </article>
 
-        <article
-          class="concept-card"
-          tabindex="0"
-          role="button"
-          data-topic="linked-list"
-          aria-label="Open Linked Lists"
-        >
+        <article class="concept-card" tabindex="0" role="button" data-topic="linked-list">
           <div class="concept-top">
             <span class="concept-symbol purple-symbol">⇢</span>
             <span class="tag">LINEAR DATA</span>
           </div>
-
           <h3>Linked Lists</h3>
           <p>Follow pointers and understand how nodes connect, change, and move.</p>
-
           <div class="concept-bottom">
-            <span>Insert · Delete · Reverse</span>
-            <span>↗</span>
+            <span>Insert · Delete · Reverse</span><span>↗</span>
           </div>
         </article>
 
-        <article
-          class="concept-card"
-          tabindex="0"
-          role="button"
-          data-topic="stack-queue"
-          aria-label="Open Stacks and Queues"
-        >
+        <article class="concept-card" tabindex="0" role="button" data-topic="stack-queue">
           <div class="concept-top">
             <span class="concept-symbol green-symbol">▤</span>
             <span class="tag">LIFO / FIFO</span>
           </div>
-
           <h3>Stacks &amp; Queues</h3>
           <p>Explore how items enter and leave these essential data structures.</p>
-
           <div class="concept-bottom">
-            <span>Push · Pop · Enqueue</span>
-            <span>↗</span>
+            <span>Push · Pop · Enqueue</span><span>↗</span>
           </div>
         </article>
 
@@ -509,48 +483,36 @@ while (notSorted) {
     <!-- PRACTICE -->
     <section class="practice-banner" id="practice">
       <div class="practice-mark">✳</div>
-
       <div>
         <div class="eyebrow">YOUR NEXT STEP</div>
         <h2>Understand it. Then <span>solve it.</span></h2>
         <p>Use visual learning as a launchpad for stronger DSA problem-solving.</p>
       </div>
-
-      <a class="button button-primary" href="#visualizer">
-        Back to the lab ↑
-      </a>
+      <a class="button button-primary" href="#visualizer">Back to the lab ↑</a>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <a class="brand footer-brand" href="#">
       <span class="brand-mark">L<span>✳</span></span>
-      <span>
-        Logic<span class="brand-light">Lens</span>
-        <small>ALGORITHM PLAYGROUND</small>
-      </span>
+      <span>Logic<span class="brand-light">Lens</span><small>ALGORITHM PLAYGROUND</small></span>
     </a>
-
     <span>Built to make algorithms click.</span>
     <span>© 2026 LogicLens</span>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- KEEP YOUR EXISTING SORTING SCRIPT -->
-  <script src="js/script.js"></script>
+  <!-- IMPORTANT: script.js is in the repository root -->
+  <script src="script.js"></script>
 
-  <!-- LEARNING CARD FUNCTIONALITY -->
   <script>
     (() => {
       const cards = document.querySelectorAll(".concept-card[data-topic]");
 
       cards.forEach(card => {
-        card.addEventListener("click", () => {
-          openTopic(card.dataset.topic);
-        });
+        card.addEventListener("click", () => openTopic(card.dataset.topic));
 
         card.addEventListener("keydown", event => {
           if (event.key === "Enter" || event.key === " ") {
@@ -562,119 +524,65 @@ while (notSorted) {
 
       function openTopic(topic) {
         if (topic === "sorting") {
-          document.getElementById("visualizer").scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
-          document.getElementById("algorithmSelect").focus({
-            preventScroll: true
-          });
-
+          document.getElementById("visualizer").scrollIntoView({ behavior: "smooth" });
+          document.getElementById("algorithmSelect").focus({ preventScroll: true });
           return;
         }
 
-        const existing = document.getElementById("learningDemo");
+        const oldPanel = document.getElementById("learningDemo");
+        if (oldPanel) oldPanel.remove();
 
-        if (existing) existing.remove();
-
-        if (topic === "linked-list") {
-          showLinkedList();
-        } else if (topic === "stack-queue") {
-          showStackQueue();
-        }
+        if (topic === "linked-list") showLinkedList();
+        if (topic === "stack-queue") showStackQueue();
       }
 
-      function createDemoPanel(title, description) {
+      function createPanel(title, description) {
         const panel = document.createElement("section");
-
         panel.id = "learningDemo";
         panel.className = "panel learning-demo";
-        panel.setAttribute("aria-labelledby", "demoTitle");
 
         panel.innerHTML = `
           <div class="section-heading">
             <div>
               <div class="eyebrow">INTERACTIVE LEARNING LAB</div>
-              <h2 id="demoTitle">${title}</h2>
+              <h2>${title}</h2>
               <p>${description}</p>
             </div>
-
-            <button type="button" class="button button-ghost" id="closeDemo">
-              Close ✕
-            </button>
+            <button type="button" class="button button-ghost" id="closeDemo">Close ✕</button>
           </div>
-
           <label class="field-label" for="demoValue">VALUE</label>
-
-          <input
-            id="demoValue"
-            class="demo-input"
-            type="number"
-            placeholder="Enter a number"
-          >
-
+          <input class="demo-input" id="demoValue" type="number" placeholder="Enter a number">
           <div class="demo-buttons" id="demoButtons"></div>
-
           <h3 class="demo-heading">Visualization</h3>
-          <div class="demo-display" id="demoDisplay" aria-live="polite">
-            Empty structure
-          </div>
-
-          <p class="demo-message" id="demoMessage" aria-live="polite">
-            Ready to begin.
-          </p>
-
+          <div class="demo-display" id="demoDisplay">Empty structure</div>
+          <p class="demo-message" id="demoMessage">Ready to begin.</p>
           <div class="demo-complexity" id="demoComplexity"></div>
-
           <h3 class="demo-heading">Java Example</h3>
           <pre class="demo-code"><code id="demoJava"></code></pre>
         `;
 
         document.querySelector("#practice").before(panel);
+        panel.scrollIntoView({ behavior: "smooth", block: "start" });
 
-        panel.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-        panel.querySelector("#closeDemo").addEventListener("click", () => {
-          panel.remove();
-
-          document.querySelector("#learn").scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        });
-
+        panel.querySelector("#closeDemo").addEventListener("click", () => panel.remove());
         return panel;
       }
 
-      function addButton(container, label, id, handler) {
+      function addButton(container, label, handler) {
         const button = document.createElement("button");
-
         button.type = "button";
         button.className = "button button-primary";
-        button.id = id;
         button.textContent = label;
         button.addEventListener("click", handler);
-
         container.appendChild(button);
-
-        return button;
       }
 
       function showLinkedList() {
-        const panel = createDemoPanel(
-          "Linked List Visualizer",
-          "Add nodes, delete the first node, and reverse the list."
-        );
-
+        const panel = createPanel("Linked List Visualizer", "Insert, delete, and reverse nodes.");
         const input = panel.querySelector("#demoValue");
         const buttons = panel.querySelector("#demoButtons");
         const display = panel.querySelector("#demoDisplay");
         const message = panel.querySelector("#demoMessage");
-
         const values = [];
 
         function render() {
@@ -688,77 +596,54 @@ while (notSorted) {
           values.forEach((value, index) => {
             const node = document.createElement("div");
             node.className = "demo-node";
-
-            node.textContent =
-              index === values.length - 1
-                ? `${value} → null`
-                : `${value} →`;
-
+            node.textContent = index === values.length - 1 ? `${value} → null` : `${value} →`;
             display.appendChild(node);
           });
         }
 
         function readValue() {
-          if (
-            input.value.trim() === "" ||
-            !Number.isFinite(Number(input.value))
-          ) {
-            message.textContent = "Enter a valid number first.";
-            input.focus();
+          if (input.value.trim() === "") {
+            message.textContent = "Enter a number first.";
             return null;
           }
-
           return Number(input.value);
         }
 
-        addButton(buttons, "Insert at end", "insertNode", () => {
+        addButton(buttons, "Insert at end", () => {
           const value = readValue();
-
-          if (value === null) return;
-
+          if (value === null || !Number.isFinite(value)) return;
           values.push(value);
           input.value = "";
-
           render();
-
-          message.textContent = `Inserted ${value} at the end.`;
+          message.textContent = `Inserted ${value}.`;
         });
 
-        addButton(buttons, "Delete first", "deleteNode", () => {
+        addButton(buttons, "Delete first", () => {
           if (!values.length) {
-            message.textContent = "The list is already empty.";
+            message.textContent = "The list is empty.";
             return;
           }
-
-          const removed = values.shift();
-
+          message.textContent = `Deleted ${values.shift()}.`;
           render();
-
-          message.textContent = `Deleted first node: ${removed}.`;
         });
 
-        addButton(buttons, "Reverse", "reverseNodes", () => {
+        addButton(buttons, "Reverse", () => {
           values.reverse();
-
           render();
-
-          message.textContent = "Linked list reversed.";
+          message.textContent = "List reversed.";
         });
 
-        addButton(buttons, "Clear", "clearList", () => {
+        addButton(buttons, "Clear", () => {
           values.length = 0;
-
           render();
-
-          message.textContent = "Linked list cleared.";
+          message.textContent = "List cleared.";
         });
 
         panel.querySelector("#demoComplexity").textContent =
-          "Insert at end: O(1) with a tail pointer; O(n) without one. " +
-          "Delete first: O(1). Reverse: O(n).";
+          "Insert at end without a tail pointer: O(n). Delete first: O(1). Reverse: O(n).";
 
-        panel.querySelector("#demoJava").textContent = `
-class Node {
+        panel.querySelector("#demoJava").textContent =
+`class Node {
     int data;
     Node next;
 
@@ -767,75 +652,27 @@ class Node {
     }
 }
 
-Node head = null;
-
-void insertAtEnd(int value) {
-    Node node = new Node(value);
-
-    if (head == null) {
-        head = node;
-        return;
-    }
-
-    Node current = head;
-
-    while (current.next != null) {
-        current = current.next;
-    }
-
-    current.next = node;
-}
-
-void deleteFirst() {
-    if (head != null) {
-        head = head.next;
-    }
-}
-
-void reverse() {
-    Node previous = null;
-    Node current = head;
-
-    while (current != null) {
-        Node next = current.next;
-        current.next = previous;
-        previous = current;
-        current = next;
-    }
-
-    head = previous;
-}`.trim();
+// A linked list node stores data and a reference
+// to the next node.`;
 
         render();
       }
 
       function showStackQueue() {
-        const panel = createDemoPanel(
-          "Stacks & Queues Visualizer",
-          "Choose a structure and explore its insertion and removal rules."
-        );
-
+        const panel = createPanel("Stacks & Queues Visualizer", "Explore LIFO stacks and FIFO queues.");
         const buttons = panel.querySelector("#demoButtons");
         const display = panel.querySelector("#demoDisplay");
         const input = panel.querySelector("#demoValue");
         const message = panel.querySelector("#demoMessage");
-        const complexity = panel.querySelector("#demoComplexity");
-        const java = panel.querySelector("#demoJava");
+        const values = [];
 
         const selector = document.createElement("select");
-
-        selector.id = "structureType";
         selector.className = "demo-input";
-        selector.setAttribute("aria-label", "Choose data structure");
-
         selector.innerHTML = `
           <option value="stack">Stack (LIFO)</option>
           <option value="queue">Queue (FIFO)</option>
         `;
-
         buttons.before(selector);
-
-        const values = [];
 
         function render() {
           display.replaceChildren();
@@ -845,124 +682,80 @@ void reverse() {
             return;
           }
 
-          values.forEach((value, index) => {
+          values.forEach(value => {
             const node = document.createElement("div");
-
             node.className = "demo-node";
             node.textContent = value;
-
-            if (
-              selector.value === "stack" &&
-              index === values.length - 1
-            ) {
-              node.title = "Top of stack";
-            }
-
-            if (selector.value === "queue" && index === 0) {
-              node.title = "Front of queue";
-            }
-
             display.appendChild(node);
           });
         }
 
-        function updateInformation() {
-          if (selector.value === "stack") {
-            complexity.textContent =
-              "Stack: Last In, First Out (LIFO). " +
-              "Push: O(1). Pop: O(1).";
-
-            java.textContent = `
-import java.util.ArrayDeque;
-import java.util.Deque;
-
-Deque<Integer> stack = new ArrayDeque<>();
-
-stack.push(10);
-stack.push(20);
-
-int top = stack.peek();
-int removed = stack.pop();`.trim();
-          } else {
-            complexity.textContent =
-              "Queue: First In, First Out (FIFO). " +
-              "Enqueue: O(1). Dequeue: O(1) using a queue implementation.";
-
-            java.textContent = `
-import java.util.ArrayDeque;
-import java.util.Queue;
-
-Queue<Integer> queue = new ArrayDeque<>();
-
-queue.offer(10);
-queue.offer(20);
-
-int front = queue.peek();
-int removed = queue.poll();`.trim();
+        addButton(buttons, "Add / Push", () => {
+          if (input.value.trim() === "") {
+            message.textContent = "Enter a number first.";
+            return;
           }
 
-          render();
-        }
-
-        function readValue() {
-          if (
-            input.value.trim() === "" ||
-            !Number.isFinite(Number(input.value))
-          ) {
-            message.textContent = "Enter a valid number first.";
-            input.focus();
-            return null;
-          }
-
-          return Number(input.value);
-        }
-
-        addButton(buttons, "Add / Push", "addItem", () => {
-          const value = readValue();
-
-          if (value === null) return;
+          const value = Number(input.value);
+          if (!Number.isFinite(value)) return;
 
           values.push(value);
           input.value = "";
-
           render();
-
           message.textContent = selector.value === "stack"
             ? `Pushed ${value} onto the stack.`
             : `Enqueued ${value} into the queue.`;
         });
 
-        addButton(buttons, "Remove / Pop", "removeItem", () => {
+        addButton(buttons, "Remove / Pop", () => {
           if (!values.length) {
             message.textContent = "The structure is empty.";
             return;
           }
 
-          const removed = selector.value === "stack"
-            ? values.pop()
-            : values.shift();
-
+          const removed = selector.value === "stack" ? values.pop() : values.shift();
           render();
-
           message.textContent = selector.value === "stack"
-            ? `Popped ${removed} from the stack.`
-            : `Dequeued ${removed} from the queue.`;
+            ? `Popped ${removed}.`
+            : `Dequeued ${removed}.`;
         });
 
-        addButton(buttons, "Clear", "clearStructure", () => {
+        addButton(buttons, "Clear", () => {
           values.length = 0;
-
           render();
-
           message.textContent = "Structure cleared.";
         });
 
-        selector.addEventListener("change", updateInformation);
+        function updateInfo() {
+          panel.querySelector("#demoComplexity").textContent =
+            selector.value === "stack"
+              ? "Stack uses LIFO: Last In, First Out. Push and pop: O(1)."
+              : "Queue uses FIFO: First In, First Out. Enqueue and dequeue: O(1) with a suitable queue implementation.";
 
-        updateInformation();
+          panel.querySelector("#demoJava").textContent =
+            selector.value === "stack"
+              ? "Deque<Integer> stack = new ArrayDeque<>();\nstack.push(10);\nstack.push(20);\nstack.pop();"
+              : "Queue<Integer> queue = new ArrayDeque<>();\nqueue.offer(10);\nqueue.offer(20);\nqueue.poll();";
+        }
+
+        selector.addEventListener("change", updateInfo);
+        updateInfo();
+        render();
+      }
+
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+          const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+          menuToggle.setAttribute("aria-expanded", String(!expanded));
+          navLinks.classList.toggle("open", !expanded);
+        });
       }
     })();
   </script>
 
 </body>
 </html>
+```
