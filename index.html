@@ -1,0 +1,969 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0d12">
+
+  <title>LogicLens — See the Logic</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .concept-card {
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .concept-card:hover,
+    .concept-card:focus-visible {
+      transform: translateY(-5px);
+      border-color: #6c8cff;
+      outline: none;
+    }
+
+    .concept-card:focus-visible {
+      box-shadow: 0 0 0 3px rgba(108, 140, 255, .35);
+    }
+
+    .learning-demo {
+      padding: 28px;
+      margin: 30px 0;
+      scroll-margin-top: 90px;
+    }
+
+    .demo-input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 16px;
+      border: 1px solid #343b4b;
+      border-radius: 8px;
+      background: #11151e;
+      color: #fff;
+      font: inherit;
+    }
+
+    .demo-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .demo-display {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      min-height: 75px;
+      padding: 20px 0;
+    }
+
+    .demo-node {
+      padding: 14px 18px;
+      min-width: 55px;
+      text-align: center;
+      border: 1px solid #648bff;
+      border-radius: 10px;
+      background: #171f35;
+      color: #fff;
+      font-family: "DM Mono", monospace;
+    }
+
+    .demo-message {
+      min-height: 25px;
+      margin-top: 12px;
+      color: #9cb8ff;
+    }
+
+    .demo-code {
+      overflow-x: auto;
+      padding: 16px;
+      background: #0b0d12;
+      border: 1px solid #282e3b;
+      border-radius: 10px;
+      color: #c6d6ff;
+      white-space: pre;
+    }
+
+    .demo-complexity {
+      margin-top: 18px;
+      padding: 15px;
+      background: #121722;
+      border-radius: 10px;
+      line-height: 1.8;
+    }
+
+    .demo-heading {
+      margin-top: 22px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <!-- NAVIGATION -->
+  <header class="topbar">
+
+    <a class="brand" href="#" aria-label="LogicLens home">
+      <span class="brand-mark">L<span>✳</span></span>
+      <span>
+        Logic<span class="brand-light">Lens</span>
+        <small>ALGORITHM PLAYGROUND</small>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="active" href="#visualizer">Visualizer</a>
+      <a href="#learn">Learn</a>
+      <a href="#practice">Practice</a>
+    </nav>
+
+    <a class="top-cta" href="#visualizer">
+      Start exploring <span>↗</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >☰</button>
+
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="hero-copy">
+
+        <div class="eyebrow">
+          <span class="live-dot"></span>
+          YOUR INTERACTIVE DSA WORKSPACE
+        </div>
+
+        <h1>
+          See the logic.<br>
+          <span>Understand</span> the algorithm.
+        </h1>
+
+        <p>
+          Make abstract concepts click. Explore algorithms one step at a
+          time with live visualisations, code, and complexity insights.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#visualizer">
+            Explore visualizer <span>→</span>
+          </a>
+
+          <a class="button button-ghost" href="#learn">
+            Explore concepts
+          </a>
+        </div>
+
+        <div class="hero-proof">
+          <div class="avatar-stack">
+            <i>01</i><i>02</i><i>03</i>
+          </div>
+          <span>Learn by doing, not memorising.</span>
+        </div>
+
+      </div>
+
+      <div class="hero-art" aria-label="Abstract algorithm illustration">
+
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+
+        <div class="hero-node node-a">01</div>
+        <div class="hero-node node-b">10</div>
+        <div class="hero-node node-c">11</div>
+        <div class="hero-node node-d">00</div>
+
+        <div class="hero-core">
+          <span>✳</span>
+          <small>LOGIC IN MOTION</small>
+        </div>
+
+        <div class="floating-code">
+          <span class="code-dot"></span>
+          <span class="code-dot"></span>
+          <span class="code-dot"></span>
+
+          <code>
+while (notSorted) {
+  compare();
+  swapIfNeeded();
+}
+          </code>
+        </div>
+
+        <div class="art-caption">
+          <span class="live-dot"></span>
+          VISUALISE EVERY STEP
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="stats-strip" aria-label="Platform highlights">
+      <div><strong>01</strong><span>Watch each step</span></div>
+      <div><strong>02</strong><span>Understand the code</span></div>
+      <div><strong>03</strong><span>Master complexity</span></div>
+      <div><strong>04</strong><span>Build confidence</span></div>
+    </section>
+
+    <!-- SORTING VISUALIZER -->
+    <section class="section visualizer-section" id="visualizer">
+
+      <div class="section-heading">
+
+        <div>
+          <div class="eyebrow">
+            INTERACTIVE LAB <span class="section-index">/ 01</span>
+          </div>
+          <h2>Sorting <span>Visualizer</span></h2>
+        </div>
+
+        <div class="status-pill">
+          <span class="live-dot"></span>
+          LIVE SIMULATION
+        </div>
+
+      </div>
+
+      <div class="workspace">
+
+        <aside class="control-panel panel">
+
+          <div class="panel-title">
+            <span class="panel-icon">⌘</span>
+            <div>
+              <h3>Control room</h3>
+              <p>Configure your experiment</p>
+            </div>
+          </div>
+
+          <label class="field-label" for="algorithmSelect">
+            ALGORITHM
+          </label>
+
+          <select id="algorithmSelect">
+            <option value="bubble">Bubble Sort</option>
+            <option value="selection">Selection Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="merge">Merge Sort</option>
+            <option value="quick">Quick Sort</option>
+          </select>
+
+          <label class="field-label" for="arrayInput">
+            YOUR ARRAY <span>comma-separated</span>
+          </label>
+
+          <div class="array-entry">
+            <input
+              id="arrayInput"
+              value="42, 18, 35, 9, 27, 14, 31"
+              aria-label="Array values"
+            >
+            <button id="applyArray" title="Apply array">↵</button>
+          </div>
+
+          <p class="field-hint">
+            Enter 2–18 numbers, separated by commas.
+          </p>
+
+          <div class="field-row">
+            <label class="field-label" for="sizeRange">ARRAY SIZE</label>
+            <span class="range-value" id="sizeValue">7 values</span>
+          </div>
+
+          <input type="range" id="sizeRange" min="4" max="14" value="7">
+
+          <div class="field-row">
+            <label class="field-label" for="speedRange">
+              ANIMATION SPEED
+            </label>
+            <span class="range-value" id="speedValue">2×</span>
+          </div>
+
+          <input type="range" id="speedRange" min="1" max="5" value="2">
+
+          <div class="control-buttons">
+
+            <button class="button button-primary full" id="startBtn">
+              <span>▶</span> Start sorting
+            </button>
+
+            <div class="button-pair">
+              <button class="button button-ghost" id="pauseBtn" disabled>
+                Ⅱ Pause
+              </button>
+
+              <button class="button button-ghost" id="resetBtn">
+                ↻ Reset
+              </button>
+            </div>
+
+            <button class="button button-subtle full" id="randomBtn">
+              ✧ Generate random array
+            </button>
+
+          </div>
+
+          <div class="keyboard-note">
+            <span>TIP</span>
+            Watch the highlighted pair. Larger values gradually move right.
+          </div>
+
+        </aside>
+
+        <div class="visual-panel panel">
+
+          <div class="visual-topline">
+            <div>
+              <span class="tiny-label">CURRENT PROCESS</span>
+              <h3 id="processTitle">Ready to sort</h3>
+            </div>
+
+            <div class="step-counter">
+              STEP <strong id="stepCount">00</strong>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <div class="chart-grid">
+              <i>100</i><i>75</i><i>50</i><i>25</i><i>0</i>
+            </div>
+
+            <div
+              class="bars"
+              id="bars"
+              role="img"
+              aria-label="Array bars ready to sort"
+            ></div>
+          </div>
+
+          <div class="legend">
+            <span><i class="legend-normal"></i> Unsorted</span>
+            <span><i class="legend-compare"></i> Comparing</span>
+            <span><i class="legend-sorted"></i> Sorted</span>
+          </div>
+
+          <div class="progress-line">
+            <div id="progressBar"></div>
+          </div>
+
+          <div class="metrics">
+
+            <div class="metric-card">
+              <span class="metric-icon blue">⇄</span>
+              <div>
+                <small>COMPARISONS</small>
+                <strong id="comparisonCount">0</strong>
+              </div>
+              <span class="metric-foot">pair checks</span>
+            </div>
+
+            <div class="metric-card">
+              <span class="metric-icon purple">↔</span>
+              <div>
+                <small>SWAPS</small>
+                <strong id="swapCount">0</strong>
+              </div>
+              <span class="metric-foot">element moves</span>
+            </div>
+
+            <div class="metric-card">
+              <span class="metric-icon green">◷</span>
+              <div>
+                <small>TIME COMPLEXITY</small>
+                <strong id="complexityValue">O(n²)</strong>
+              </div>
+              <span class="metric-foot">average / worst</span>
+            </div>
+
+          </div>
+
+          <div class="explanation-box">
+            <div class="explain-icon">✳</div>
+            <div>
+              <span class="tiny-label">WHAT'S HAPPENING?</span>
+              <p id="explanation">
+                Press Start sorting to watch the selected algorithm in action.
+              </p>
+            </div>
+          </div>
+
+          <div class="code-panel">
+            <div class="code-panel-head">
+              <span class="tiny-label">JAVA IMPLEMENTATION</span>
+              <span class="code-language">JAVA</span>
+            </div>
+            <pre><code id="javaCode"></code></pre>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- LEARNING CARDS -->
+    <section class="section learn-section" id="learn">
+
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">
+            BUILD YOUR FOUNDATIONS
+            <span class="section-index">/ 02</span>
+          </div>
+          <h2>Explore the <span>building blocks.</span></h2>
+        </div>
+
+        <p class="heading-aside">Small steps. Strong fundamentals.</p>
+      </div>
+
+      <div class="concept-grid">
+
+        <article
+          class="concept-card"
+          tabindex="0"
+          role="button"
+          data-topic="sorting"
+          aria-label="Open Sorting Algorithms"
+        >
+          <div class="concept-top">
+            <span class="concept-symbol blue-symbol">↕</span>
+            <span class="tag">SORTING</span>
+          </div>
+
+          <h3>Sorting Algorithms</h3>
+          <p>Arrange data and compare different approaches to the same problem.</p>
+
+          <div class="concept-bottom">
+            <span>Bubble · Selection · Insertion</span>
+            <span>↗</span>
+          </div>
+        </article>
+
+        <article
+          class="concept-card"
+          tabindex="0"
+          role="button"
+          data-topic="linked-list"
+          aria-label="Open Linked Lists"
+        >
+          <div class="concept-top">
+            <span class="concept-symbol purple-symbol">⇢</span>
+            <span class="tag">LINEAR DATA</span>
+          </div>
+
+          <h3>Linked Lists</h3>
+          <p>Follow pointers and understand how nodes connect, change, and move.</p>
+
+          <div class="concept-bottom">
+            <span>Insert · Delete · Reverse</span>
+            <span>↗</span>
+          </div>
+        </article>
+
+        <article
+          class="concept-card"
+          tabindex="0"
+          role="button"
+          data-topic="stack-queue"
+          aria-label="Open Stacks and Queues"
+        >
+          <div class="concept-top">
+            <span class="concept-symbol green-symbol">▤</span>
+            <span class="tag">LIFO / FIFO</span>
+          </div>
+
+          <h3>Stacks &amp; Queues</h3>
+          <p>Explore how items enter and leave these essential data structures.</p>
+
+          <div class="concept-bottom">
+            <span>Push · Pop · Enqueue</span>
+            <span>↗</span>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- PRACTICE -->
+    <section class="practice-banner" id="practice">
+      <div class="practice-mark">✳</div>
+
+      <div>
+        <div class="eyebrow">YOUR NEXT STEP</div>
+        <h2>Understand it. Then <span>solve it.</span></h2>
+        <p>Use visual learning as a launchpad for stronger DSA problem-solving.</p>
+      </div>
+
+      <a class="button button-primary" href="#visualizer">
+        Back to the lab ↑
+      </a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="brand footer-brand" href="#">
+      <span class="brand-mark">L<span>✳</span></span>
+      <span>
+        Logic<span class="brand-light">Lens</span>
+        <small>ALGORITHM PLAYGROUND</small>
+      </span>
+    </a>
+
+    <span>Built to make algorithms click.</span>
+    <span>© 2026 LogicLens</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- KEEP YOUR EXISTING SORTING SCRIPT -->
+  <script src="js/script.js"></script>
+
+  <!-- LEARNING CARD FUNCTIONALITY -->
+  <script>
+    (() => {
+      const cards = document.querySelectorAll(".concept-card[data-topic]");
+
+      cards.forEach(card => {
+        card.addEventListener("click", () => {
+          openTopic(card.dataset.topic);
+        });
+
+        card.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openTopic(card.dataset.topic);
+          }
+        });
+      });
+
+      function openTopic(topic) {
+        if (topic === "sorting") {
+          document.getElementById("visualizer").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+          document.getElementById("algorithmSelect").focus({
+            preventScroll: true
+          });
+
+          return;
+        }
+
+        const existing = document.getElementById("learningDemo");
+
+        if (existing) existing.remove();
+
+        if (topic === "linked-list") {
+          showLinkedList();
+        } else if (topic === "stack-queue") {
+          showStackQueue();
+        }
+      }
+
+      function createDemoPanel(title, description) {
+        const panel = document.createElement("section");
+
+        panel.id = "learningDemo";
+        panel.className = "panel learning-demo";
+        panel.setAttribute("aria-labelledby", "demoTitle");
+
+        panel.innerHTML = `
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">INTERACTIVE LEARNING LAB</div>
+              <h2 id="demoTitle">${title}</h2>
+              <p>${description}</p>
+            </div>
+
+            <button type="button" class="button button-ghost" id="closeDemo">
+              Close ✕
+            </button>
+          </div>
+
+          <label class="field-label" for="demoValue">VALUE</label>
+
+          <input
+            id="demoValue"
+            class="demo-input"
+            type="number"
+            placeholder="Enter a number"
+          >
+
+          <div class="demo-buttons" id="demoButtons"></div>
+
+          <h3 class="demo-heading">Visualization</h3>
+          <div class="demo-display" id="demoDisplay" aria-live="polite">
+            Empty structure
+          </div>
+
+          <p class="demo-message" id="demoMessage" aria-live="polite">
+            Ready to begin.
+          </p>
+
+          <div class="demo-complexity" id="demoComplexity"></div>
+
+          <h3 class="demo-heading">Java Example</h3>
+          <pre class="demo-code"><code id="demoJava"></code></pre>
+        `;
+
+        document.querySelector("#practice").before(panel);
+
+        panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+        panel.querySelector("#closeDemo").addEventListener("click", () => {
+          panel.remove();
+
+          document.querySelector("#learn").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        });
+
+        return panel;
+      }
+
+      function addButton(container, label, id, handler) {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "button button-primary";
+        button.id = id;
+        button.textContent = label;
+        button.addEventListener("click", handler);
+
+        container.appendChild(button);
+
+        return button;
+      }
+
+      function showLinkedList() {
+        const panel = createDemoPanel(
+          "Linked List Visualizer",
+          "Add nodes, delete the first node, and reverse the list."
+        );
+
+        const input = panel.querySelector("#demoValue");
+        const buttons = panel.querySelector("#demoButtons");
+        const display = panel.querySelector("#demoDisplay");
+        const message = panel.querySelector("#demoMessage");
+
+        const values = [];
+
+        function render() {
+          display.replaceChildren();
+
+          if (!values.length) {
+            display.textContent = "Empty linked list";
+            return;
+          }
+
+          values.forEach((value, index) => {
+            const node = document.createElement("div");
+            node.className = "demo-node";
+
+            node.textContent =
+              index === values.length - 1
+                ? `${value} → null`
+                : `${value} →`;
+
+            display.appendChild(node);
+          });
+        }
+
+        function readValue() {
+          if (
+            input.value.trim() === "" ||
+            !Number.isFinite(Number(input.value))
+          ) {
+            message.textContent = "Enter a valid number first.";
+            input.focus();
+            return null;
+          }
+
+          return Number(input.value);
+        }
+
+        addButton(buttons, "Insert at end", "insertNode", () => {
+          const value = readValue();
+
+          if (value === null) return;
+
+          values.push(value);
+          input.value = "";
+
+          render();
+
+          message.textContent = `Inserted ${value} at the end.`;
+        });
+
+        addButton(buttons, "Delete first", "deleteNode", () => {
+          if (!values.length) {
+            message.textContent = "The list is already empty.";
+            return;
+          }
+
+          const removed = values.shift();
+
+          render();
+
+          message.textContent = `Deleted first node: ${removed}.`;
+        });
+
+        addButton(buttons, "Reverse", "reverseNodes", () => {
+          values.reverse();
+
+          render();
+
+          message.textContent = "Linked list reversed.";
+        });
+
+        addButton(buttons, "Clear", "clearList", () => {
+          values.length = 0;
+
+          render();
+
+          message.textContent = "Linked list cleared.";
+        });
+
+        panel.querySelector("#demoComplexity").textContent =
+          "Insert at end: O(1) with a tail pointer; O(n) without one. " +
+          "Delete first: O(1). Reverse: O(n).";
+
+        panel.querySelector("#demoJava").textContent = `
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+    }
+}
+
+Node head = null;
+
+void insertAtEnd(int value) {
+    Node node = new Node(value);
+
+    if (head == null) {
+        head = node;
+        return;
+    }
+
+    Node current = head;
+
+    while (current.next != null) {
+        current = current.next;
+    }
+
+    current.next = node;
+}
+
+void deleteFirst() {
+    if (head != null) {
+        head = head.next;
+    }
+}
+
+void reverse() {
+    Node previous = null;
+    Node current = head;
+
+    while (current != null) {
+        Node next = current.next;
+        current.next = previous;
+        previous = current;
+        current = next;
+    }
+
+    head = previous;
+}`.trim();
+
+        render();
+      }
+
+      function showStackQueue() {
+        const panel = createDemoPanel(
+          "Stacks & Queues Visualizer",
+          "Choose a structure and explore its insertion and removal rules."
+        );
+
+        const buttons = panel.querySelector("#demoButtons");
+        const display = panel.querySelector("#demoDisplay");
+        const input = panel.querySelector("#demoValue");
+        const message = panel.querySelector("#demoMessage");
+        const complexity = panel.querySelector("#demoComplexity");
+        const java = panel.querySelector("#demoJava");
+
+        const selector = document.createElement("select");
+
+        selector.id = "structureType";
+        selector.className = "demo-input";
+        selector.setAttribute("aria-label", "Choose data structure");
+
+        selector.innerHTML = `
+          <option value="stack">Stack (LIFO)</option>
+          <option value="queue">Queue (FIFO)</option>
+        `;
+
+        buttons.before(selector);
+
+        const values = [];
+
+        function render() {
+          display.replaceChildren();
+
+          if (!values.length) {
+            display.textContent = "Empty structure";
+            return;
+          }
+
+          values.forEach((value, index) => {
+            const node = document.createElement("div");
+
+            node.className = "demo-node";
+            node.textContent = value;
+
+            if (
+              selector.value === "stack" &&
+              index === values.length - 1
+            ) {
+              node.title = "Top of stack";
+            }
+
+            if (selector.value === "queue" && index === 0) {
+              node.title = "Front of queue";
+            }
+
+            display.appendChild(node);
+          });
+        }
+
+        function updateInformation() {
+          if (selector.value === "stack") {
+            complexity.textContent =
+              "Stack: Last In, First Out (LIFO). " +
+              "Push: O(1). Pop: O(1).";
+
+            java.textContent = `
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+Deque<Integer> stack = new ArrayDeque<>();
+
+stack.push(10);
+stack.push(20);
+
+int top = stack.peek();
+int removed = stack.pop();`.trim();
+          } else {
+            complexity.textContent =
+              "Queue: First In, First Out (FIFO). " +
+              "Enqueue: O(1). Dequeue: O(1) using a queue implementation.";
+
+            java.textContent = `
+import java.util.ArrayDeque;
+import java.util.Queue;
+
+Queue<Integer> queue = new ArrayDeque<>();
+
+queue.offer(10);
+queue.offer(20);
+
+int front = queue.peek();
+int removed = queue.poll();`.trim();
+          }
+
+          render();
+        }
+
+        function readValue() {
+          if (
+            input.value.trim() === "" ||
+            !Number.isFinite(Number(input.value))
+          ) {
+            message.textContent = "Enter a valid number first.";
+            input.focus();
+            return null;
+          }
+
+          return Number(input.value);
+        }
+
+        addButton(buttons, "Add / Push", "addItem", () => {
+          const value = readValue();
+
+          if (value === null) return;
+
+          values.push(value);
+          input.value = "";
+
+          render();
+
+          message.textContent = selector.value === "stack"
+            ? `Pushed ${value} onto the stack.`
+            : `Enqueued ${value} into the queue.`;
+        });
+
+        addButton(buttons, "Remove / Pop", "removeItem", () => {
+          if (!values.length) {
+            message.textContent = "The structure is empty.";
+            return;
+          }
+
+          const removed = selector.value === "stack"
+            ? values.pop()
+            : values.shift();
+
+          render();
+
+          message.textContent = selector.value === "stack"
+            ? `Popped ${removed} from the stack.`
+            : `Dequeued ${removed} from the queue.`;
+        });
+
+        addButton(buttons, "Clear", "clearStructure", () => {
+          values.length = 0;
+
+          render();
+
+          message.textContent = "Structure cleared.";
+        });
+
+        selector.addEventListener("change", updateInformation);
+
+        updateInformation();
+      }
+    })();
+  </script>
+
+</body>
+</html>
